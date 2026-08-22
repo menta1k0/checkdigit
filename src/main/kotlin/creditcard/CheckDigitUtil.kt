@@ -29,7 +29,7 @@ class CheckDigitUtil {
         // 数値精査
         try{
             pan.toLong()
-        }catch (e: Exception){
+        }catch (_: Exception){
             throw IllegalArgumentException("panに数値以外の文字が含まれています（pan=[$pan]）")
         }
 
@@ -47,7 +47,6 @@ class CheckDigitUtil {
     /**
      * チェックディジットを算出する。
      *
-     *
      * @param input チェックディジットを算出する対象の文字列
      * @return チェックディジット
      * @throws IllegalArgumentException 引数inputに不備がある場合
@@ -59,7 +58,7 @@ class CheckDigitUtil {
         // 数値精査
         try{
             input.toLong()
-        }catch (e: Exception){
+        }catch (_: Exception){
             throw IllegalArgumentException("inputに数値以外の文字が含まれています（input=[$input]）")
         }
 
@@ -85,6 +84,8 @@ class CheckDigitUtil {
         }
 
         val mod = total % 10
-        return (10 - mod).toString()
+
+        //return (10 - mod).toString() 左記だと余りが0のときに10が返却されてしまう
+        return ((10 - mod) % 10).toString()
     }
 }
