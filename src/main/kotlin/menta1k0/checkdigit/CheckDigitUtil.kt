@@ -1,7 +1,7 @@
-package creditcard
+package menta1k0.checkdigit
 
 /**
- * クレジットカードのチェックディジットに関するユーティリティ
+ * チェックディジットユーティリティ
  *
  * Luhnアルゴリズム
  * モジュラス10 ウェイト2・1分割
@@ -17,13 +17,16 @@ class CheckDigitUtil {
      * @return 有効なチェックディジットを持つ場合にtrue、そうでない場合にfalseを返す
      * @throws IllegalArgumentException 引数panに不備がある場合
      */
-    fun isValid(pan: String): Boolean{
+    fun isValidPan(pan: String): Boolean{
         //----------------------------
         // 引数精査
         //----------------------------
         // substringの前の精査
         if(pan.length < 2){
-            throw IllegalArgumentException("panの桁数が短すぎます（pan=[$pan]）")
+            throw IllegalArgumentException("panの桁数が短すぎます（pan_length=[${pan.length}]）")
+        }
+        if(pan.length > 16){
+            throw IllegalArgumentException("panの桁数が長すぎます（pan_length=[${pan.length}]）")
         }
 
         // 数値精査

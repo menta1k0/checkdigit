@@ -1,10 +1,10 @@
-package creditcard
+package menta1k0.checkdigit
 
 import org.junit.Test
 import kotlin.test.assertEquals
 
 /**
- * クレジットカードのチェックディジットに関するユーティリティのテスト
+ * チェックディジットユーティリティのテスト
  *
  * @author menta1k0
  */
@@ -17,32 +17,38 @@ class CheckDigitUtilTest {
 
     /** 不正な引数が指定された場合（空文字） */
     @Test(expected = IllegalArgumentException::class)
-    fun isValid1(){
-        util.isValid("")
+    fun isValidPan1(){
+        util.isValidPan("")
     }
 
     /** 不正な引数が指定された場合（1桁の数字） */
     @Test(expected = IllegalArgumentException::class)
-    fun isValid2(){
-        util.isValid("1")
+    fun isValidPan2(){
+        util.isValidPan("1")
     }
 
     /** 不正な引数が指定された場合（数値以外の文字が含まれている） */
     @Test(expected = IllegalArgumentException::class)
-    fun isValid3(){
-        util.isValid("123456 ")
+    fun isValidPan3(){
+        util.isValidPan("123456 ")
     }
 
     /** 不正な引数が指定された場合（数値以外の文字が含まれている） */
     @Test(expected = IllegalArgumentException::class)
-    fun isValid4(){
-        util.isValid("1234 56")
+    fun isValidPan4(){
+        util.isValidPan("1234 56")
     }
 
     /** 不正な引数が指定された場合（数値以外の文字が含まれている） */
     @Test(expected = IllegalArgumentException::class)
-    fun isValid5(){
-        util.isValid("1234a56")
+    fun isValidPan5(){
+        util.isValidPan("1234a56")
+    }
+
+    /** 不正な引数が指定された場合（16桁より長い） */
+    @Test(expected = IllegalArgumentException::class)
+    fun isValidPan7(){
+        util.isValidPan("12345678901234567")
     }
 
     //------------------------------------------------------
@@ -50,8 +56,8 @@ class CheckDigitUtilTest {
     //------------------------------------------------------
     /** wikipediaの例 */
     @Test
-    fun isValid6(){
-        assertEquals(true, util.isValid("49927398716"))
+    fun isValidPan6(){
+        assertEquals(true, util.isValidPan("49927398716"))
     }
 
     /** 余りが10=チェックディジット0となる場合のテストケース */
